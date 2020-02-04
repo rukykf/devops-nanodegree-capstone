@@ -5,8 +5,6 @@
     image_tag: "latest"
   become: yes
   pre_tasks:
-    - name: Update cache if needed
-      apt: update_cache=yes cache_valid_time=3600
     - name: Ensure package dependencies are installed
       apt:
         state: present
