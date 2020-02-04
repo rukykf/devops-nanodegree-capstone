@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: devops-capstone-lb
+  labels:
+    app: devops-capstone
+spec:
+  type: LoadBalancer
+  selector:
+    app: devops-capstone
+  ports:
+    - port: 80
+      targetPort: 80

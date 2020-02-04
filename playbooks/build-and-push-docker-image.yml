@@ -1,0 +1,40 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  vars:
+    image_tag: "latest"
+  become: yes
+  pre_tasks:
+    - name: Update cache if needed
+      apt: update_cache=yes cache_valid_time=3600
+    - name: Ensure package dependencies are installed
+      apt:
+        state: present
+        name: python-pip
+    - name: Ensure python package dependencies are installed
+      pip:
+        state: present
+        name: docker
+
+  tasks:
+    - name: Login to docker hub
+      docker_login:
+        username: "rukkykf"
+        password: "{{ docker_hub_password }}"
+        config_path: "{{ lookup('env', 'HOME') }}/.docker/config.json"
+        reauthorize: yes
+    - name: Build Image
+      docker_image:
+        build:
+          path: ../src
+          pull: yes
+        name: rukkykf/devops-image
+        tag: "{{ image_tag }}"
+        force_tag: yes
+        source: build
+        force_source: yes
+    - name: Push Image
+      docker_image:
+        name: "rukkykf/devops-image:{{ image_tag }}"
+        push: yes
+        source: local

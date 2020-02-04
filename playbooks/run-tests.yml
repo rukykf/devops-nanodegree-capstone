@@ -1,0 +1,39 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  become: yes
+  pre_tasks:
+    - name: Update cache if needed
+      apt: update_cache=yes cache_valid_time=3600
+    - name: Ensure package dependencies are installed
+      apt:
+        state: present
+        name: python-pip
+    - name: Ensure python package dependencies are installed
+      pip:
+        state: present
+        name: docker
+
+  tasks:
+    - name: Create Docker Container
+      docker_container:
+        image: "rukkykf/devops-image:latest"
+        name: devops-container
+        detach: yes
+        recreate: yes
+        pull: yes
+        tty: yes
+        keep_volumes: no
+        published_ports:
+          - 8000:80
+    - name: Add the newly created container to the inventory
+      add_host:
+        hostname: devops-container
+        ansible_connection: docker
+    - name: Run tests within the container
+      raw: cd /var/www/html && ./vendor/bin/phpunit --testsuite Unit
+      become: no
+      delegate_to: devops-container
+      register: unit_tests
+    - name: Test Results
+      debug: msg="{{ unit_tests.stdout }}"

@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 
 class DevopsClassTest extends TestCase
 {
-
     public function testSayHello()
     {
         $hello = new DevopsClass();

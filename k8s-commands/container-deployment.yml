@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-capstone-deployment
+  labels:
+    app: devops-capstone
+spec:
+  strategy:
+    type: RollingUpdate
+  replicas: 4
+  selector:
+    matchLabels:
+      app: devops-capstone
+  template:
+    metadata:
+      labels:
+        app: devops-capstone
+    spec:
+      containers:
+        - name: devops-capstone
+          image: rukkykf/devops-image:latest
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always

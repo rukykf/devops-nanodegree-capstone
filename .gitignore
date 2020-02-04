@@ -1,2 +1,5 @@
 /src/vendor/
 .idea/
+/playbooks/variables.yml
+/playbooks/docker-config/
+/rolling-update-test-script/.idea/
