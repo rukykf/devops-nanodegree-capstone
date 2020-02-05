@@ -9,6 +9,9 @@ pipeline {
        stage('Build and Push Docker Image') {
             steps {
                 sh 'ansible-playbook ./playbooks/build-and-push-docker-image.yml'
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "exit 1"
+                }
             }
         }
         stage('Run Unit Tests Within Container'){
