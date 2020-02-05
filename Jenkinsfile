@@ -27,7 +27,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy updated image to cluster'){
+        stage('Deploy Updated Image to Cluster'){
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                    sh 'sudo kubectl apply -f ./k8s-commands' // Bad idea but this is a demo and I'm lazy right :)
