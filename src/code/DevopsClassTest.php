@@ -9,6 +9,6 @@ class DevopsClassTest extends TestCase
     public function testSayHello()
     {
         $hello = new DevopsClass();
-        $this->assertEquals("Hello World", $hello->sayHello());
+        $this->assertEquals("Hello World!", $hello->sayHello());
     }
 }
