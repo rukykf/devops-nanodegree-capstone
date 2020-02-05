@@ -1,7 +1,7 @@
 import requests
 
 # make 200 requests to the server
-output = open("output.txt", "a+")
+output = open("original_code_response_output.txt", "a+")
 old_code_response = "Hello World. <br/>This is Kofi's Udacity Devops-nanodegree capstone project"
 new_code_response = "This is Kofi's Udacity Devops-nanodegree capstone project"
 response_texts = []
