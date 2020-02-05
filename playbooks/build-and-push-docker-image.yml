@@ -32,7 +32,4 @@
         source: build
         force_source: yes
     - name: Push Image
-      docker_image:
-        name: "rukkykf/devops-image:{{ image_tag }}"
-        push: yes
-        source: local
+      command: docker push rukkykf/devops-image
