@@ -2,7 +2,7 @@
 - hosts: 127.0.0.1
   connection: local
   vars:
-    image_tag: "latest"
+    image_tag: "3"
   become: no
   pre_tasks:
     - name: Ensure package dependencies are installed

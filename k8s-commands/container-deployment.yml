@@ -18,7 +18,6 @@ spec:
     spec:
       containers:
         - name: devops-capstone
-          image: rukkykf/devops-image
+          image: rukkykf/devops-image:3
           ports:
-            - containerPort: 80
-          imagePullPolicy: Always
+            - containerPort: 8
