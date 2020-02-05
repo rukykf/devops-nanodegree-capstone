@@ -3,7 +3,7 @@
   connection: local
   vars:
     image_tag: "latest"
-  become: yes
+  become: no
   pre_tasks:
     - name: Ensure package dependencies are installed
       apt:
