@@ -1,7 +1,6 @@
 # devops-nanodegree-capstone
 Capstone project for the udacity cloud devops nanodegree
 
-## NOTES:
 ## USING AMAZON EKS and ANSIBLE
 I opted to use Amazon's managed kubernetes as a service offering. 
 I setup the cluster using ansible with amazon's eksctl tool for managing EKS clusters 
